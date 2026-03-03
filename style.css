@@ -1,0 +1,14 @@
+html {
+  font-family: "Segoe UI", Geneva, Verdana, sans-serif;
+}
+
+#too-young-message {
+  display: none;
+  color: #ff0000;
+}
+
+#mover {
+  position: absolute;
+  top: 0px;
+  left: 10px;
+}
