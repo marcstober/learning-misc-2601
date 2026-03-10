@@ -29,6 +29,8 @@ const studyButton = document.getElementById("study-button");
 const countEl = document.getElementById("count");
 const countButton = document.getElementById("count-button");
 
+const h1 = document.getElementsByTagName("h1")[0];
+
 let currentUser;
 
 const people = [
@@ -36,6 +38,36 @@ const people = [
   [Student, "Sarah"],
   [User, "Jeffrey", "Jeff"],
 ];
+
+const pages = [
+  { id: "age-page", title: "The Age Page" },
+  { id: "counter-page", title: "The Counter Page" },
+];
+let pageIndex = 0;
+
+function loadPage() {
+  h1.textContent = pages[pageIndex].title;
+  for (let i = 0; i < pages.length; i++) {
+    const isCurrentPage = i === pageIndex;
+    document.getElementById(pages[i].id).style.display = isCurrentPage
+      ? "block"
+      : "none";
+    if (!isCurrentPage) {
+      document.getElementById("other-page-link").textContent = pages[i].title;
+    }
+  }
+}
+
+loadPage();
+
+document.getElementById("other-page-link").addEventListener("click", (evt) => {
+  pageIndex++;
+  if (pageIndex > pages.length - 1) {
+    pageIndex = 0;
+  }
+  loadPage();
+  evt.preventDefault();
+});
 
 function getLoginButtonClickHandler(userInfo) {
   // closure
