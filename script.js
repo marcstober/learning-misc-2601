@@ -26,6 +26,9 @@ const loginSarahButton = document.getElementById("login-sarah-button");
 const loginJeffButton = document.getElementById("login-jeff-button");
 const studyButton = document.getElementById("study-button");
 
+const countEl = document.getElementById("count");
+const countButton = document.getElementById("count-button");
+
 let currentUser;
 
 const people = [
@@ -110,3 +113,30 @@ setInterval(() => {
     move.style.top += 10;
   }
 }, 2);
+
+//////////////
+
+function getCounter() {
+  let name = "Mr. Counter";
+  console.log("the name is " + name);
+  let countt = 0;
+  return {
+    getCount() {
+      console.log("NOW we are running getCount");
+      return countt; // closure (because we used the variable in a function that is returned by the "outer" function)
+    },
+    increaseCount() {
+      countt++; // closure
+    },
+  };
+}
+
+const counter = getCounter();
+
+console.log("not running getCounter any more");
+
+countButton.addEventListener("click", () => {
+  // these work even though the variable "count" is not in scope here!
+  counter.increaseCount();
+  countEl.textContent = counter.getCount();
+});
